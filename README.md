@@ -1,1 +1,0 @@
-# aplik_int
