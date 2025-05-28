@@ -1,0 +1,42 @@
+body {
+    background-color: #fef4ea;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #243343;
+}
+
+form {
+    margin-top: 20px;
+}
+
+    form input {
+        border-radius: 5px;
+        padding: 10px;
+    }
+
+.btn-primary {
+    width: 100%;
+    background-color: #f1c693;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.text-danger {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}

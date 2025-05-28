@@ -1,0 +1,4 @@
+Admin,Admin,Admin
+User123,UserPass,Klient
+
+klient,klient,Klient
