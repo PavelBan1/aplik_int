@@ -1,6 +1,9 @@
 ﻿<?php
 session_start();
 
+$_SESSION['last_activity'] = time();
+
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -29,6 +32,10 @@ if (isset($_POST['login'])) {
         $_SESSION['logged_in'] = true;
         $_SESSION['username'] = $user;
         $_SESSION['role'] = 'Admin';
+
+        setcookie('username', $user, time() + (30 * 24 * 60 * 60), "/");
+        setcookie('password', $pass, time() + (30 * 24 * 60 * 60), "/");
+
         header("Location: admin.php");
         exit();
     }
@@ -40,12 +47,17 @@ if (isset($_POST['login'])) {
         $_SESSION['logged_in'] = true;
         $_SESSION['username'] = $user;
         $_SESSION['role'] = 'Klient';
+
+        setcookie('username', $user, time() + (30 * 24 * 60 * 60), "/");
+        setcookie('password', $pass, time() + (30 * 24 * 60 * 60), "/");
+
         header("Location: klient.php");
         exit();
     } else {
         $error = "Nieprawidłowa nazwa użytkownika lub hasło!";
     }
 }
+
 
 if (!isset($_SESSION['logged_in'])) {
 ?>
@@ -65,11 +77,15 @@ if (!isset($_SESSION['logged_in'])) {
         <form method="post">
             <div class="mb-3">
                 <label class="form-label">Nazwa użytkownika:</label>
-                <input type="text" name="username" class="form-control" required>
+                <input type="text" name="username" class="form-control" required
+                    value="<?= isset($_COOKIE['username']) ? htmlspecialchars($_COOKIE['username']) : '' ?>">
+
             </div>
             <div class="mb-3">
                 <label class="form-label">Hasło:</label>
-                <input type="password" name="password" class="form-control" required>
+                <input type="password" name="password" class="form-control" required
+                    value="<?= isset($_COOKIE['password']) ? htmlspecialchars($_COOKIE['password']) : '' ?>">
+
             </div>
             <button type="submit" name="login" class="btn btn-primary">Zaloguj się</button>
         </form>
