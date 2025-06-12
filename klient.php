@@ -6,7 +6,7 @@ $timeout = 900;
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity']) > $timeout) {
     session_unset();
     session_destroy();
-    header("Location: index.php?timeout=1");
+    header("Location: index.php");
     exit();
 }
 
@@ -67,6 +67,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['take_credit'])) {
     <link rel="stylesheet" href="klient.css">
 </head>
 <body>
+    <?php
+    $sessionExpiresAt = $_SESSION['last_activity'] + 900;
+    $formattedTime = date("H:i:s", $sessionExpiresAt);
+    ?>
+    <div style="
+        position: fixed;
+        top: 50px;
+        right: 20px;
+        background-color: #e9f7ef;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+        padding: 10px 15px;
+        border-radius: 10px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;">
+        Sesja wygaśnie o <strong><?= $formattedTime ?></strong>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
     $(document).ready(function () {
